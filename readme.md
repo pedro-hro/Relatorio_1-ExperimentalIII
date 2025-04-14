@@ -57,7 +57,8 @@ $$
   pip install jupyter numpy matplotlib
   ```
 - LaTeX (compilação do relatório):
-  ```TeX Live``` ou ```MiKTeX``` para renderização de arquivos .tex
+  `TeX Live` ou `MiKTeX` para renderização de arquivos .tex
+
 ---
 
 ## 🤝 Contribuição
@@ -87,7 +88,3 @@ Porto Alegre, RS - Brasil
 
 **Acesso ao Relatório**:  
 [relatorio.pdf](Latex/relatorio.pdf)
-
-```
-
-```
