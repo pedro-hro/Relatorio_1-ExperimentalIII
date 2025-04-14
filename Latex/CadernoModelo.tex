@@ -1,6 +1,5 @@
-\documentclass[brazilian,12pt,a4paper,final]{article}
-\DeclareUnicodeCharacter{2219}{\textbullet}
-\usepackage[brazilian]{babel}
+\documentclass[column,brazilian,12pt,a4paper,final]{article}
+\usepackage[brazil]{babel}
 \usepackage{nonfloat}
 \usepackage[utf8]{inputenc}
 \usepackage{multicol}
@@ -8,146 +7,252 @@
 \usepackage[pdftex]{color,graphicx}
 \usepackage{geometry}
 \usepackage{amsmath}
-\usepackage{dirtytalk}
  \geometry{
  a4paper,
  total={170mm,257mm},
  left=20mm,
  top=20mm,
  }
+ \usepackage{ragged2e}
 \usepackage{fancyhdr}
 \usepackage{caption}[=v1]
 \usepackage{xcolor}
-\pagestyle{fancy}
+\pagestyle{plain}
 \fancyhead{}
 \lhead{\includegraphics[width=1.5cm]{logoufrgs}}
 \rhead{\includegraphics[width=0.8cm]{logoif}}
 \fancyfoot{}
-\fancyhead[C]{\footnotesize Física Experimental II - A (FIS01260) \bullet 2024/2}
+\fancyhead[C]{\footnotesize Física Experimental III $\bullet$ 2025/1}
 \fancyfoot[RO,LE]{\thepage}
+\usepackage{float}
+\usepackage{setspace}
 
-\pagestyle{empty}
-\title{Determinação Experimental do Calor Latente de Vaporização do Nitrogênio Líquido}
-\author{Aluno: Pedro Henrique Reis de Oliveira - Matrícula: 00590908 \\ IF-UFRGS}
-\date{Dezembro 2024}
+
+\title{Estudo do Campo Elétrico a Partir de Equipotenciais }
+\author{Autores: \\ Lucas Assis Paulino da Silva - 590174 \\Lucas Bertazo de Deus Félix - 587064
+ \\ Pedro Henrique Reis de Oliveira - 590908 \\ IF-UFRGS}
+\date{Abril 2025}
 
 \begin{document}
 \maketitle
-%\tableofcontents
-\thispagestyle{fancy} 
+\thispagestyle{fancy}
 
 \section*{Resumo}
 \paragraph{}
-Este relatório descreve um experimento realizado para determinar o calor latente de vaporização do nitrogênio líquido utilizando um método calorimétrico. O objetivo principal foi medir a energia necessária para a mudança de fase do nitrogênio líquido para vapor à pressão atmosférica, combinando medições da taxa de evaporação natural e induzida por uma fonte de calor conhecida. Foram realizadas medições de massa, tempo, corrente e tensão, e posteriormente o tratamento de dados.
+
+No que diz respeito ao estudo da eletrostática, este relatório possui como objetivo analisar dados coletados em uma montagem experimental que permitiram a visualização das equipotenciais entre dois extremos de um dipolo elétrico. Com tais dados pudemos, então, processar a partir de métodos computacionais os valores obtidos em cada ponto equipotencial e derivar o campo elétrico dos mesmos. Tal procedimento possibilitou a visualização gráfica do pressuposto teórico de campo elétrico reafirmando a geometria esperada para este cenário. Devemos ressaltar o aspecto da incerteza inerente à como as medidas foram tomadas; a ponteira utilizada para medir o potencial em cada ponto foi operada manualmente e o papel milimetrado de referencia possui incerteza visual de ±0,05cm além da propagação de incertezas no processo derivativo. Considerando tal aspecto, pudemos calcular ainda o valor do campo nos pontos (5;0), (0;0), (-5;0) e (5;5) como sendo (+0,3183;-0,0096) e módulo igual a 0,3183, (+0,2319;0,0000) e módulo igual a 0,2319, (+0,3620;-0,0277) e módulo 0,3631 e (0,2311;0,0753) e módulo igual a 0,2431 respectivamente. 
 
 \section{Introdução}
 \paragraph{}
 
-O calor latente é uma grandeza física essencial na termodinâmica, representando a quantidade de energia necessária para que uma substância mude de fase sem alteração de temperatura. Este fenômeno está presente em diversos processos do cotidiano, desde a evaporação da água durante o cozimento de alimentos até aplicações industriais como sistemas de refrigeração. No caso específico do nitrogênio líquido, seu baixo ponto de ebulição (aproximadamente 77K ou -196°C) e alto calor latente de vaporização o tornam ideal para diversas aplicações, desde a conservação de materiais biológicos até o resfriamento de supercondutores. Este experimento visa determinar experimentalmente o calor latente de vaporização do nitrogênio líquido à pressão atmosférica, utilizando um método calorimétrico que combina a medição da taxa de evaporação natural com aquela induzida por uma fonte de calor conhecida.
+Tratando do estudo da eletrostática, as linhas de campo imaginárias têm papel fundamental no processo de abstração e interpretação dos fenômenos físicos inerentes ao comportamento das cargas em nosso universo. Tal princípio foi o motivador para a realização do experimento aqui relatado. Construindo-se uma estrutura que nos permitisse medir coordenadas de pontos equipotenciais, a visualização gráfica dos mesmos, por si só, nos ajudam a compreender a geometria presente nos fenômenos elétricos que nos rodeiam. Entretanto, explorando a base teórica física e matemática construída até o momento, podemos ir ainda além, relacionando as medidas de diferença de potencial com a definição do campo elétrico e seu aspecto vetorial. Dessa forma, esperamos que linhas de campo perpendiculares àquelas das equipotenciais se formem ao construirmos seus respectivos gráficos e façamos o processamento de dados necessário.  
 
 \section{Embasamento Teórico}
-\label{embas}
-Partimos da seguinte relação porque não temos variação da energia interna e trabalho desprezível realizado sobre/pelo o sistema:
-$$
-    Q = mL_v
-$$
-Para relacionar essas grandezas experimentalmente, analisaremos sua variação, portanto:
-$$
-    \frac{dQ}{dt} = \frac{d(mL_v)}{dt}
-$$
-\newpage
-A energia transferida para o sistema vêm do resistor, mas também existe contribuição da energia fornecida pelo próprio ambiente ao sistema. Portanto, para os cálculos precisaremos considerar apenas a energia dada pelo resistor, fazemos:
-$$
-    \frac{dm_{total}}{dt} = \frac{dm_{aquecedor}}{dt} + \frac{dm_{ambiente}}{dt}
-$$
-Considerando que a potência fornecida pelo resistor é constante e equivalente a energia transferida via calor, temos:
-$$
-    P = \frac{dQ}{dt} = \frac{dm_{aquecedor}}{dt}L_v = i \cdot V
-$$
-Aproximando a variação da massa como:
-$$
-    \frac{dm_{aquecedor}}{dt} = \frac{m_{final} - m_{inicial}}{t_{final} - t_{inicial}}
-$$
-Podemos calcular o calor latente de vaporização como:
-$$
-    L_v = \frac{P}{\frac{m_{final} - m_{inicial}}{t_{final} - t_{inicial}}}
-$$
-Mais detalhes, demonstrações e cálculos completos podem ser encontrados no capítulo 18.8 do livro Fundamentos de Física, de Halliday e Resnick \cite{Halliday - 9 ed}.
-
-\section{Materiais Utilizados}
 \paragraph{}
-Foram utilizados para o experimento os seguintes materiais e instrumentos:
-\begin{enumerate}
-    \item Amostra de nitrogênio líquido
-    \item Balança analógica (Precisão 0,1g)
-    \item Calorímetro
-    \item Cronômetro (Precisão 0,01s)
-    \item Resistor de potência
-    \item Fonte de tensão contínua
-    \item Dois multímetros digitais (Precisão 0,001V e 0,1mA) 
-\end{enumerate}
+Posto um sistema elétrico dipolar, nos baseamos nas linhas de campo para idealizar e definir o comportamento vetorial do campo elétrico gerado por ele. Nossa teoria afirma que as linhas de campo "saem" da carga positiva do sistema e se conectam com as linhas de campo do polo negativo que as recebem. Nosso intuito em estudar experimentalmente o sistema supracitado é de visualizar essas linhas e montar gráficos, não somente teóricos, das linhas de campo do sistema. Podemos, ainda, chamar a diferença de potencial em cada ponto de DDP, ou também de voltagem[V]. Esse termo que utilizaremos daqui a diante. Como citado anteriormente, a relação existente entre as voltagens medidas e o vetor campo elétrico é o princípio da nossa análise. Essa relação se mostra da seguinte maneira:
 
-\newpage
-\section{Procedimentos}
+\subsection{Campo Elétrico e Voltagem:}
+
+\begin{equation}
+    \Vec{E} = -(\frac{\partial V}{\partial x}\vec{i} + \frac{\partial V}{\partial y}\vec{j} + \frac{\partial V}{\partial z}\vec{k})
+\end{equation}
+
+A igualdade acima expressa a relação existente entre o vetor campo elétrico e a voltagem como sendo o negativo do vetor gradiente formado pelas derivadas parciais da função escalar de $V$ em cada ponto. O que reafirma a ideia do vetor campo elétrico ser perpendicular as linhas equipotenciais do sistema. 
+
+\section{Material Utilizado}
+\begin{itemize}
+    \item Minipa® ET-2075B(Multímetro)
+    \item Cilindro condutor(3,5cm de diâmetro)
+    \item Placas metálicas(5cm de largura)
+    \item Fonte Elétrica - IF UFRGS
+    \item Suportes Condutores 
+    \item Eletrodos
+    \item Presilhas
+    \item Papel milimetrado
+    \item "Bacia" retangular 
+
+\end{itemize}
+\section{Procedimentos e Montagem}
 \paragraph{}
-Inicialmente, mediu-se o tempo de evaporação natural do nitrogênio líquido, ajustando-o na balança e observando a perda de 10g até retornar ao equilíbrio. Em seguida, o tempo para evaporação induzida pelo resistor foi registrado, seguindo o mesmo princípio, mas com o resistor dentro do calorímetro. Com base nesses dados, calculou-se o calor latente de vaporização.
+No  que concerne o método experimental utilizado, estruturamos sobre o papel milimetrado uma "bacia" de vidro fina sobre a qual foram conectados duas terminações de um circuito elétrico. Estes que saíam de uma fonte de alimentação que gerava um DDP total de aproximadamente 10V. A montagem se encontra na ilustração a seguir(Figura 1):
+\singlespacing
 
-\begin{figure}[!htb]
+
     \centering
-    \includegraphics[width=0.45\linewidth]{montagem3.png}
-    \caption{Montagem Experimental}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{MECE.png}
+      
+        \label{fig:imagem1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{MECEII.png}
+        \caption{Figura 2. Montagem do Experimento II}
+        \label{fig:imagem2}
+    \end{minipage}
+
+
+\justifying 
+
+\paragraph{}
+Definida nossa montagem experimental, a coleta de dados se deu por meio de um multímetro, o qual foi operado manualmente, o que gerou incerteza de medida inerente ao método, conectado ao sistema. Cada medida consistia-se das coordenadas do ponto e a voltagem medida naquele ponto. Dessa forma, possuiríamos os dados necessários para a construção de um gráfico de equipotenciais e posterior processamento de dados para determinação do campo elétrico em cada situação estruturada. Devemos ressaltar também que, além da montagem expressa acima, também foram feitas medidas onde barras metálicas se encontravam lado a lado sobre cada polo, gerando um campo teoricamente linear uniforme, e por fim, um cilindro metálico adicionado no centro entre as duas barras(Figura 2).
+
+
+
+
+
+\section{Dados Experimentais}
+\subsection{Medidas Equipotenciais - I:}
+\paragraph{}
+Neste experimento em específico, todos os dados coletados foram claramente expressos nos gráficos que procederão a seguir. Dito isto, aqui constarão somente alguns exemplos tabelados dos dados coletados, contendo as coordenadas de cada ponto e a voltagem medida para a primeira configuração(montagem I):
+
+\linespread{1}
+\begin{table}[h!]
+\centering
+\vspace{0.5cm}
+\begin{tabular}{c|c|c}
+\hline
+   X[cm]  &  Y[cm] & Volts[$V$]
+   \\
+   \hline
+   0 & 0& 5\\
+   0 & -10&5 \\
+   0 & -5&5 \\
+   0 & 5& 5\\
+   0 & 10& 5\\
+   7,5 & 0& 3,36\\
+   8 & -1,4& 3,36\\
+   9 & -2,6 & 3,35\\
+   8 & 1,4& 3,37\\
+   9 & 2,5& 3,37\\
+   . & . & .\\
+   .&.&.\\
+   \hline
+\end{tabular}
+\linespread{1}
+\end{table}
+\justifying
+
+\subsection{Gráficos Equipotenciais e de Campo Elétrico:}
+
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{EP1.jpg}
+        
+        \label{fig:imagem1}
+    \end{minipage} \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Campo DipoloN.png}
+        \label{fig:imagem2}
+    \end{minipage}
+    
+    \vskip 0.5cm % Space between rows
+    
+    % Second Row
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{EP2.jpg}
+        \label{fig:imagem3}
+    \end{minipage} \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Campo PlacasN.png}
+        \label{fig:imagem4}
+    \end{minipage}
+    
+    \vskip 0.5cm % Space between rows
+    
+    % Third Row
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{EP3.jpg}
+        \label{fig:imagem5}
+    \end{minipage} \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Campo CilindroN.png}
+        \label{fig:imagem6}
+    \end{minipage}
+
+
+\justifying 
+
+\subsection{Gráficos Interpolados de Campo Elétrico }
+    \centering
+    
+    \centering
+    \begin{minipage}{0.8\textwidth}
+\begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{Campo Cilindro.png}
+            \caption{Enter Caption}
+            \label{fig:enter-label}
+        \end{figure}
+                \centering
+        \includegraphics[width=\linewidth]{Campo Dipolo .png}
+        \label{fig:imagem1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Campo Placas.png}
+       
+        \label{fig:imagem2}
+    \end{minipage}
+ \begin{minipage}{0.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Campo Cilindro.png}
     \label{fig:enter-label}
+\end{minipage}
+    \centering
+
+
+
+
+
+
+\justifying
+\subsection{Gráfico do Potencial Sobre o Eixo X}
+O gráfico a seguir corresponde à variação da voltagem medida rente ao eixo X do sistema constituído pelo dipolo isolado: o potencial diminui linearmente conforme nos afastamos do polo positivo. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{DPx.jpg}
 \end{figure}
-\section{Análise de Dados e Resultados}
-\subsection*{Dados Experimentais}
-O tempo encontrado para a evaporação natural foi de $245,75s$. A Tabela \ref{tab:dados} apresenta os valores de corrente, tensão, tempo e o calor latente de vaporização $L_v$ calculado para cada medida válida.
+O gráfico acima corresponde à primeira parte da questão 2 do trabalho presente no roteiro do experimento.  
 
-\begin{table}[!htb]
-    \centering
-    \caption{Dados experimentais e resultados de $L_v$}
-    \label{tab:dados}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        \textbf{Medida} & \textbf{Corrente [mA]} & \textbf{Tensão [V]} & \textbf{Tempo [s]} & \textbf{$L_v$ Calculado [J/g]} \\ \hline
-        1 & 201.2 & 1.100 & 238.3 & 173.97 \\ \hline
-        2 & 391.9 & 2.126 & 254.44 & 111.07 \\ \hline
-        3 & 311.9 & 1.696 & 220.00 & 169.55 \\ \hline
-    \end{tabular}
-\end{table}
-\newpage
-\subsection*{Resultados}
-O valor experimental do calor latente de vaporização do nitrogênio líquido, considerando a média e a incerteza, calculada como desvio padrão da média, foi:
-$$
-    L_v = 151.5 \pm 20.3 \, \text{J/g}
-$$
-\begin{table}[!htb]
-    \centering
-    \caption{Resultados do calor latente de vaporização em diferentes unidades}
-    \label{tab:conversao}
-    \begin{tabular}{ |c|c|c| }
-        \hline
-        \textbf{Unidade} & \textbf{Valor Experimental} & \textbf{Valor Tabelado ($N_2$)} \\ \hline
-        J/g & $151.5 \pm 20.3$ & 199.1 \\ \hline
-        cal/g & $36.2 \pm 4.9$ & 47.6 \\ \hline
-        kJ/mol & $4.24 \pm 0.57$ & 5.58 \\ \hline
-    \end{tabular}
-\end{table}
 
-Comparando com o valor tabelado de $199.1 \, \text{J/g}$, o erro relativo é de $31.4\%$. Durante o experimento, enfrentamos dificuldades no sincronismo das medições de tempo e massa, o que afetou a precisão dos resultados. Medidas inconsistentes foram descartadas. Outras fontes de erro incluem variações ambientais não controladas e simplificações teóricas, como a suposição de que a potência do resistor equivale à energia transferida por calor.
+\justifying
+\section{Análise de Dados}
+\paragraph{}
+Trazendo à tona a premissa do experimento, os gráficos das equipotenciais e dos campos, produzidos a partir de um delicado trabalho computacional(Acesse o tratamento computacional de dados completo em: \url{https://github.com/sunbaee/Eletrostatics} e \url{https://github.com/pedro-hro/Relatorio_1-ExperimentalIII/tree/master}), decerto reproduziram aquilo idealizado ante à teoria em questão, entretanto, cada configuração experimental com suas peculiaridades. Traçando como linhas os pontos coletados sob certa restrição de potencial similar, a configuração 1 do experimento torna nítido o comportamento de projeções circulares de equipotenciais ao redor dos centros de carga, encontrando um ponto médio perpendicular ao eixo do dipolo. \footnote{Resposta à questão 6ai do trabalho no roteiro}Além disso, a construção do espaço vetorial das linhas de campo seguem de forma perpendicular as linhas de campo, por construção, encaixando-se graciosamente com a abstração visual que o conceito de campo nos gera de um dipolo.
+\paragraph{}
+A segunda configuração, porém, está inserida em um contexto de incerteza e impossibilidade de reprodução: As linhas equipotenciais esperadas entre duas placas infinitas possuem estrutura perfeitamente paralela às placas, com potencial diminuindo em módulo conforme se aproximam as medidas à placa de carga negativa. Enquanto as linhas de campo partem no mesmo sentido de forma perpendicular. \footnote{Resposta à questão 6b do trabalho no roteiro}Entretanto, nossas placas possuem tamanho finito e relativamente pequeno e, por essa razão, observamos um comportamento semelhante àquele observado no dipolo simples. Ainda assim, é possível encontrar de forma sutil a configuração ideal nas proximidades do centro da placa, como expresso nos gráficos relativos à segunda montagem. 
+\paragraph{}
+Por fim, o terceiro cenário se mostrou, de certa forma, presunçoso. Os elementos presentes geram uma configuração singular de campo e de equipotenciais: notamos que 
+\footnote{Resposta à questão 4 do trabalho no roteiro}$V$ é constante na região interna do cilindro e \footnote{Resposta à questão 5 do trabalho no roteiro}a placa positiva faz com que as cargas positivas presentes no cilindro condutor se movam para o lado oposto, e o simétrico vale para a placa negativa. \footnote{Resposta à questão 6aii do trabalho no roteiro }Dessa forma, a resultante se assemelha a um sistema duplo dipolar, onde as cargas se polarizam gerando recepção e doação de linhas de campo no cilindro. Por conseguinte, seu fluxo é zero assim como seu campo interno. Nossos dados, porém, se mostraram insuficientes para expressar claramente o fenômeno descrito acima, ainda mais considerando o campo "mal comportado"  
+  gerado pelas placas finitas como já mencionado. Ainda assim, o gráfico do campo consegue captar, de maneira imprecisa, a distorção gerada pelo cilindro às linhas originais no sistema com placas, além da interessante distribuição de equipotenciais ao redor do cilindro. 
+
+
 \section{Conclusão}
 \paragraph{}
-O experimento alcançou seu objetivo de determinar o calor latente de vaporização do nitrogênio líquido, obtendo um valor experimental de $151.5\pm20.3\text{J/g}$, com um erro relativo de $31.4\%$ em relação ao valor tabelado. As principais fontes de erro incluem dificuldades no controle do sincronismo das medições de tempo e massa, variações nas condições ambientais e aproximações no modelo teórico. Apesar da discrepância, o método experimental demonstrou ser viável para estimar o calor latente de vaporização, ressaltando a importância de melhorias no controle das variáveis experimentais e na precisão das medições. Futuras repetições do experimento devem considerar mais atentamente a calibração dos instrumentos e o controle rigoroso das condições ambientais para reduzir as incertezas e aumentar a confiabilidade dos resultados.
+O experimento, em sua completude, tornou mais palpáveis as noções abstratas de campo por nos permitir perceber os desenhos e linhas de campo em uma situação real e com dados coletados num espaço visual e físico. Devemos considerar, é claro, as limitações advindas da própria estruturação do experimento: as coordenadas tomadas com um ponteiro tinham valor de voltagem levemente oscilantes, e o fator humano inseria grande influência sobre a posição exata do mesmo. Além disso, como citado à princípio, o papel milimetrado possui incerteza visual de ±0,05cm. Entretanto, sendo este um experimento cujo objetivo era a visualização e estudo do comportamento das linhas de campo em determinados sistemas, o rigor de mesura não se faz de todo necessário, e os resultados finais promoveram boa exploração de método e do fazer experimental. *Os métodos computacionais utilizados para analisar os dados e estruturar os gráficos partiram todos, a priori, do embasamento teórico (1) que trata das derivadas parciais do escalar vetorial e a definição de campo. 
 
 \begin{thebibliography}{99}
 
-\bibitem{Moyses_book}
-NUSSENZVEIG, H. Moysés. {\em Curso de Física Básica - Fluidos}. 1ª ed., vol. 2. São Paulo: Edgard Blücher Ltda, 1981.
-
-\bibitem{Laboratorio}
-LIMA JUNIOR, P.; SILVA, M.T.X.; SILVEIRA, F.L.; VEIT, E.A. O laboratório de Física. Porto Alegre: IF-UFRGS, 2013. (Texto de apoio)
-
-\bibitem{Halliday - 9 ed}
-HALLIDAY, D.; RESNICK, R.; WALKER, J. {\em Fundamentos de Física}. 9ª ed. Rio de Janeiro: LTC, 2012.
+\bibitem{}
+Processamento de dados e produção de gráficos equipotenciais:
+\url{https://github.com/sunbaee/Eletrostatics}
+\bibitem{}
+Processamento de dados e produção de gráficos de campo elétrico:
+\url{https://github.com/pedro-hro/Relatorio_1-ExperimentalIII/tree/master}
+\bibitem{}
+RUTH W. CHABBAY. Matter and Interactions 4th Edition - Matter and Interactions, 4th Edition. WILEY, 2015.
+\bibitem{}
+NUSSENZVEIG, H. Moysés. {\em Curso de Física Básica - Mecânica}. 5ª ed., vol. 3. São Paulo: Edgard Blücher Ltda, 2013.
 
 \end{thebibliography}
 
