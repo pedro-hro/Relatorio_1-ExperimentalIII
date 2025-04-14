@@ -38,9 +38,10 @@ $$
 ├── latex/                 📜 Arquivos LaTeX do relatório
 │   ├── relatorio.tex           🧾 Documento principal
 │   └── relatorio.pdf           📄 PDF gerado
-├── lab2.pdf               📄 Instruções para o experimento
-└── README.md              📌 Este guia
+└── lab2.pdf               📄 Instruções para o experimento
 ```
+
+Além desse repositório parte dos recursos computacionais usados no relatório estão disponíveis em: https://github.com/sunbaee/Eletrostatics
 
 ---
 
